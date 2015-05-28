@@ -8,4 +8,5 @@ public class MessageBroker {
     public MessageBroker(Queue<String> messageQueue) {
         this.messageQueue = messageQueue;
     }
+
 }
