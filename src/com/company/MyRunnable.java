@@ -15,6 +15,11 @@ public class MyRunnable implements Runnable {
         for (long i = 1; i < 1000000000; i++) {
             sum += i;
         }
+        try {
+            Thread.sleep(Long.parseLong(id.toString()));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         messageBroker.messageQueue.add(id.toString());
         System.out.println(id);
     }
