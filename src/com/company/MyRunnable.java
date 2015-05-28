@@ -1,10 +1,12 @@
 package com.company;
 
 public class MyRunnable implements Runnable {
-    private long countUntil;
+    private Integer id;
+    MessageBroker messageBroker;
 
-    MyRunnable(long countUntil) {
-        this.countUntil = countUntil;
+    MyRunnable(Integer id, MessageBroker messageBroker) {
+        this.id = id;
+        this.messageBroker = messageBroker;
     }
 
     @Override
@@ -13,6 +15,7 @@ public class MyRunnable implements Runnable {
         for (long i = 1; i < 1000000000; i++) {
             sum += i;
         }
-        System.out.println(countUntil);
+        messageBroker.messageQueue.add(id.toString());
+        System.out.println(id);
     }
 }

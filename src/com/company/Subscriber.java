@@ -9,8 +9,8 @@ public class Subscriber {
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(NTHREDS);
-        for (int i = 0; i < 500; i++) {
-            Runnable worker = new MyRunnable(10000000L + i);
+        for (int i = 0; i < 5; i++) {
+            Runnable worker = new MyRunnable(i);
             executor.execute(worker);
         }
         // This will make the executor accept no new threads

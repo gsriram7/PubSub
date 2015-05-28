@@ -1,22 +1,29 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Main {
 
     public static void main(String[] args) {
-        // We will store the threads so that we can check if they are done
+        Queue<String> queue = new LinkedList<>();
+        MessageBroker messageBroker = new MessageBroker(queue);
+        publishInformation(messageBroker);
+    }
+
+    private static void publishInformation(MessageBroker messageBroker) {
         List<Thread> threads = new ArrayList<>();
-        // We will create 500 threads
-        for (int i = 0; i < 50; i++) {
-            Runnable task = new MyRunnable(1L + i );
+
+        for (int i = 0; i < 5; i++) {
+            Runnable task = new MyRunnable(i, messageBroker);
             Thread worker = new Thread(task);
-            // We can set the name of the thread
+
             worker.setName(String.valueOf(i));
-            // Start the thread, never call method run() direct
+
             worker.start();
-            // Remember the thread for later usage
+
             threads.add(worker);
         }
         int running;
@@ -27,8 +34,6 @@ public class Main {
                     running++;
                 }
             }
-//            System.out.println("We have " + running + " running threads. ");
         } while (running > 0);
-
     }
 }
