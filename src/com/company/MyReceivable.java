@@ -15,6 +15,6 @@ public class MyReceivable implements Runnable {
         while (!id.toString().equals(message)) {            //Get data only which the thread is subscribed to
             message = messageBroker.messageQueue.peek();
         }
-        System.out.println("Message for id:" + id + " is " + messageBroker.messageQueue.poll());
+        System.out.println("Message for id:"+id+" is "+messageBroker.messageQueue.poll());
     }
 }
