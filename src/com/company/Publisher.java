@@ -8,7 +8,7 @@ public class Publisher {
         List<Thread> threads = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
-            Runnable task = new MyRunnable(i, messageBroker);
+            Runnable task = new MyPublishable(i, messageBroker);
             Thread worker = new Thread(task);
 
             worker.setName(String.valueOf(i));
