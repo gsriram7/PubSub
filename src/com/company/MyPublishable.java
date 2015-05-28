@@ -12,11 +12,7 @@ public class MyPublishable implements Runnable {
     @Override
     public void run() {
         for (long i = 1; i < 1000000000; i++) {
-        }
-        try {
-            Thread.sleep(Long.parseLong(id.toString()));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            //Just to simulate threads getting executed at different order
         }
         messageBroker.messageQueue.add(id.toString());
     }

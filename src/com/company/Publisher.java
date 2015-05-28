@@ -5,10 +5,15 @@ import java.util.List;
 
 public class Publisher {
     public void publishInformation(MessageBroker messageBroker) {
+
         List<Thread> threads = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        final int NTHREADS = 5;
+
+        for (int i = 0; i < NTHREADS; i++) {
+
             Runnable task = new MyPublishable(i, messageBroker);
+
             Thread worker = new Thread(task);
 
             worker.setName(String.valueOf(i));
@@ -17,6 +22,7 @@ public class Publisher {
 
             threads.add(worker);
         }
+
         int running;
         do {
             running = 0;
@@ -26,5 +32,6 @@ public class Publisher {
                 }
             }
         } while (running > 0);
+
     }
 }

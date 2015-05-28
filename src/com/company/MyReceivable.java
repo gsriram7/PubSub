@@ -12,9 +12,9 @@ public class MyReceivable implements Runnable {
     @Override
     public void run() {
         String message = "";
-        while (!message.equals(id.toString())) {
+        while (!id.toString().equals(message)) {
             message = messageBroker.messageQueue.peek();
         }
-        System.out.println("Message for id:"+id+" is "+messageBroker.messageQueue.poll());
+        System.out.println("Message for id:" + id + " is " + messageBroker.messageQueue.poll());
     }
 }
